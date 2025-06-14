@@ -1,29 +1,30 @@
-// App.jsx
 import { useState } from 'react';
 import InputForms from './components/InputForms';
 import PreviewPane from './components/PreviewPane';
 
 function App() {
-  const initialPaperState = {
+  // The central state for the entire application. Starts empty.
+  const [paperData, setPaperData] = useState({
     header: {
-      schoolName: "",
+      logoUrl: null,
+      schoolName: "Your School Name",
+      examName: "Exam Name",
+      className: "",
       subject: "",
-      maxMarks: "",
-      // add other header fields as needed
+      maxMarks: ""
     },
-    sections: [],
-  };
-  const [paperData, setPaperData] = useState(initialPaperState);
+    sections: [] // Sections start as an empty array
+  });
 
   return (
-    <div className="flex h-screen w-screen">
-      {/* Left Side: Preview Pane */}
+    <div className="flex h-screen w-screen bg-gray-100">
+      {/* Left Side: The Live Preview */}
       <div className="w-1/2">
         <PreviewPane paperData={paperData} />
       </div>
 
-      {/* Right Side: Input Forms */}
-      <div className="w-1/2">
+      {/* Right Side: The Control Panel */}
+      <div className="w-1/2 border-l border-gray-300">
         <InputForms paperData={paperData} setPaperData={setPaperData} />
       </div>
     </div>
